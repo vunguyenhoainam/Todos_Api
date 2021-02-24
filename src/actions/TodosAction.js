@@ -30,14 +30,15 @@ export const status = (data) => {
         payload : data
     }
 }
-export const delAll = () => {
-    return {
-        type : actionTypes.DEL_ALL
-    }
-}
-export const checkAll = (data) => {
-    return {
-        type : actionTypes.CHECK_ALL,
-        payload : data
-    }
-}
+// export const delAll = () => {
+//     return {
+//         type : actionTypes.DEL_ALL
+//     }
+// }
+// export const checkAll = (data) => {
+//     console.log("DATA : ",data);
+//     return {
+//         type : actionTypes.CHECK_ALL,
+//         payload : data
+//     }
+// }

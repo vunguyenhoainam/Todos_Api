@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { dataApp, addItem, delAll, checkAll } from "./actions/TodosAction";
-import { getData } from "./services/Api";
+import { createData, getData, putData, deleteData } from "./services/Api";
 import RenderItem from "./components/RenderItem";
 import "./components/css/style.css";
 
@@ -38,19 +38,24 @@ const App = () => {
     e.preventDefault();
     const valueInput = inputRef.current.value;
     if(valueInput !== ""){
-      dispatch(addItem(valueInput));
+      createData({title : valueInput}).then(res => dispatch(addItem(res.data)));
       inputRef.current.value = "";
     }
   }
 
-  const handleDelAll = () => {
-    dispatch(delAll());
-  }
-
-  const handleCheckAll = () => {
-    setStatusCheck(!statusCheck);
-    dispatch(checkAll(statusCheck));
-  }
+ 
+  // const handleDelAll = () => {
+  //    getData().then(res => (res.data).filter(item => item.status === true).map(item => deleteData(item.id).then(dispatch(delAll()))))
+  // }
+  
+  // const handleCheckAll = () => {
+  //   setStatusCheck(!statusCheck);
+  //   if(statusCheck === false){
+  //     getData().then(res => (res.data).map(item => putData(item.id, {status : true}).then(res => dispatch(checkAll(res.data)))))
+  //   }else{
+  //     getData().then(res => (res.data).map(item => putData(item.id, {status : false}).then(res => dispatch(checkAll(res.data)))))
+  //   }
+  // }
 
   return (
     <section className="container">
@@ -85,13 +90,13 @@ const App = () => {
         />
       </form>
       <div className="btn-control">
-        <p className="btn-control-checkAll" onClick={handleCheckAll}>Check All</p>
+        {/* <p className="btn-control-checkAll" onClick={handleCheckAll}>Check All</p> */}
         <div>
           <span className="All">All : { dataState.TodosReducer.dataTodos.length }</span>
           <span className="Complete">Complete : { countActive.length }</span>
           <span className="UnComplete">UnComplete : { (dataState.TodosReducer.dataTodos.length) - (countActive.length) }</span>
         </div>
-        <p className="btn-control-deleteAll" onClick={ handleDelAll }>Delete All</p>
+        {/* <p className="btn-control-deleteAll" onClick={ handleDelAll }>Delete All</p> */}
       </div>
       <div className="list-element">
         <ul>

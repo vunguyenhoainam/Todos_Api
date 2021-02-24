@@ -9,7 +9,7 @@ const Api = axios.create({
   timeout: 60000
 });
 
-export const createData = (data) => Api.post("", data);
+export const createData = (data) => Api.post("/", data);
 export const putData = (id, data) => Api.put(`/${id}`, data);
 export const deleteData = (id) => Api.delete(`/${id}`);
 export const getData = () => Api.get("/");
