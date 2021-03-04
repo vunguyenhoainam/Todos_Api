@@ -1,0 +1,49 @@
+{
+  "item": [
+    {
+      "id": "acd4ae36-006c-4b9d-9c06-50f6cef2b8b5",
+      "title": "Instagram",
+      "status": true
+    },
+    {
+      "id": "e93172fb-132c-4e0e-8f89-bb8a99b49424",
+      "title": "Photoshop PS6",
+      "status": true
+    },
+    {
+      "id": "f8af4e3c-9569-44f4-8502-48c1902fb094",
+      "title": "Messenger",
+      "status": false
+    },
+    {
+      "id": "a4530c2f-a7c7-4a59-88f2-bcabe96ca9ef",
+      "title": "Zingmp3",
+      "status": true
+    },
+    {
+      "id": "e1861451-c788-4f2a-b106-bb86ede5dcce",
+      "title": "Zalo",
+      "status": false
+    },
+    {
+      "id": "a42bce07-2f19-4430-9dea-ed608610ec7f",
+      "title": "VS Code",
+      "status": false
+    },
+    {
+      "id": "5c7d10a3-8925-470a-ae5a-e6692fce719d",
+      "title": "Facebook",
+      "status": false
+    },
+    {
+      "id": "b353b80e-f34e-4018-b81a-2eae0fb91c75",
+      "title": "Skype",
+      "status": true
+    },
+    {
+      "id": "1271f6f7-c6b4-4858-97bb-42e2dd96246d",
+      "title": "NCT",
+      "status": false
+    }
+  ]
+}

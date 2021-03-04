@@ -25,23 +25,13 @@ const reducerTodos = (state = initialState , action) => {
 
         case actionTypes.DEL_ITEM:
             return {
-                ...state, dataTodos : state.dataTodos.filter( item => item.id !== action.payload.id)
+                ...state, dataTodos : state.dataTodos.filter( item => item.id !== action.payload)
             }
 
         case actionTypes.EDIT_STATUS:
             return {
                 ...state, dataTodos : state.dataTodos.map((item) => (item.id === action.payload.id ? action.payload : item))
             }
-
-        // case actionTypes.DEL_ALL:
-        //     return {
-        //         ...state, dataTodos : state.dataTodos.filter( item => item.status !== true)
-        //     }
-
-        // case actionTypes.CHECK_ALL: 
-        //     return {
-        //         ...state, dataTodos : state.dataTodos.map(item => ({id : item.id, title : item.title, status : action.payload.status}))
-        //     }
 
         default:
             return state;

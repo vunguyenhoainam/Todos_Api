@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { v4 as uuidv4 } from 'uuid';
 import { useSelector, useDispatch } from "react-redux";
-import { dataApp, addItem, delAll, checkAll } from "./actions/TodosAction";
-import { createData, getData, putData, deleteData } from "./services/Api";
+import { addItemThunk, dataAppThunk } from "./actions/TodosAction";
 import RenderItem from "./components/RenderItem";
 import "./components/css/style.css";
 
@@ -9,14 +9,13 @@ import "./components/css/style.css";
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    getData().then( res => dispatch(dataApp(res.data)))
+    dispatch(dataAppThunk());
   }, [])
   const dataState = useSelector( state => state )
 
   const [search, setSearch] = useState("");
   const [filterName, setFilterName] = useState("az");
   const [filterStatus, setFilterStatus] = useState("All");
-  const [statusCheck, setStatusCheck] = useState(false);
 
   const countActive = dataState.TodosReducer.dataTodos.filter( item => item.status === true);
 
@@ -38,24 +37,10 @@ const App = () => {
     e.preventDefault();
     const valueInput = inputRef.current.value;
     if(valueInput !== ""){
-      createData({title : valueInput}).then(res => dispatch(addItem(res.data)));
+      dispatch(addItemThunk({id : uuidv4(), title : valueInput, status : false}));
       inputRef.current.value = "";
     }
   }
-
- 
-  // const handleDelAll = () => {
-  //    getData().then(res => (res.data).filter(item => item.status === true).map(item => deleteData(item.id).then(dispatch(delAll()))))
-  // }
-  
-  // const handleCheckAll = () => {
-  //   setStatusCheck(!statusCheck);
-  //   if(statusCheck === false){
-  //     getData().then(res => (res.data).map(item => putData(item.id, {status : true}).then(res => dispatch(checkAll(res.data)))))
-  //   }else{
-  //     getData().then(res => (res.data).map(item => putData(item.id, {status : false}).then(res => dispatch(checkAll(res.data)))))
-  //   }
-  // }
 
   return (
     <section className="container">
@@ -90,13 +75,11 @@ const App = () => {
         />
       </form>
       <div className="btn-control">
-        {/* <p className="btn-control-checkAll" onClick={handleCheckAll}>Check All</p> */}
         <div>
           <span className="All">All : { dataState.TodosReducer.dataTodos.length }</span>
           <span className="Complete">Complete : { countActive.length }</span>
           <span className="UnComplete">UnComplete : { (dataState.TodosReducer.dataTodos.length) - (countActive.length) }</span>
         </div>
-        {/* <p className="btn-control-deleteAll" onClick={ handleDelAll }>Delete All</p> */}
       </div>
       <div className="list-element">
         <ul>

@@ -1,7 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { editItem, delItem, status } from "../actions/TodosAction";
-import { putData, deleteData } from "../services/Api";
+import { editItemThunk, statusThunk, delItemThunk } from "../actions/TodosAction";
 
 const ItemRender = (props) => {
 
@@ -14,15 +13,15 @@ const ItemRender = (props) => {
  
   const editRef = useRef();
   const handleEditItem = (e) => {
-    putData(props.item.id , {title : editRef.current.value}).then(res => dispatch(editItem(res.data)))
+    dispatch(editItemThunk({id : props.item.id, title : editRef.current.value, status : props.item.status}))
   }
 
   const handleDel = () => {
-    deleteData(props.item.id).then(res => dispatch(delItem(res.data)))
+    dispatch(delItemThunk(props.item.id))
   }
 
   const handleStatus = () => {
-    putData(props.item.id, {status : !props.item.status}).then(res => dispatch(status(res.data)))
+    dispatch(statusThunk({id : props.item.id, title : props.item.title ,status : !props.item.status}))
   }
 
   const callAll = (e) => {
